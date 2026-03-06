@@ -1,0 +1,384 @@
+/* =============================================
+   GLOBAL CSS — TaskOrbit
+   ============================================= */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+:root {
+  --color-bg-start: #130228;
+  --color-bg-end: #0a1540;
+  --color-glow: rgba(120, 80, 255, 0.25);
+  --color-accent: #a78bfa;
+  --color-accent2: #60efff;
+  --font-main: 'Outfit', sans-serif;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: var(--font-main);
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Prevent pull-to-refresh on mobile */
+body {
+  overscroll-behavior: none;
+}
+
+/* =============================================
+   KEYFRAME ANIMATIONS
+   ============================================= */
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-18px);
+  }
+}
+
+@keyframes floatReverse {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(14px);
+  }
+}
+
+@keyframes twinkle {
+
+  0%,
+  100% {
+    opacity: 0.15;
+    transform: scale(0.8);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.3);
+  }
+}
+
+@keyframes breathe {
+
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  50% {
+    transform: translate(-50%, -50%) scale(1.018);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+
+  100% {
+    background-position: 200% center;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -48%) scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes spinSlow {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes orbit {
+  from {
+    transform: rotate(0deg) translateX(12px) rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg) translateX(12px) rotate(-360deg);
+  }
+}
+
+@keyframes fadeInOverlay {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUpModal {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fabPop {
+  0% {
+    transform: scale(0) rotate(-180deg);
+    opacity: 0;
+  }
+
+  70% {
+    transform: scale(1.12) rotate(8deg);
+  }
+
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes popIn {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+
+  80% {
+    transform: scale(1.05);
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* =============================================
+   SCROLLBAR STYLES
+   ============================================= */
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(167, 139, 250, 0.2);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(167, 139, 250, 0.35);
+}
+
+/* Hide scrollbar on mobile kanban columns */
+@media (pointer: coarse) {
+  .kanban-scroll::-webkit-scrollbar {
+    display: none;
+  }
+
+  .kanban-scroll {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+/* =============================================
+   MOBILE / RESPONSIVE OVERRIDES
+   ============================================= */
+
+/* --- FullCalendar mobile fixes --- */
+@media (max-width: 600px) {
+  .fc .fc-toolbar {
+    flex-direction: column !important;
+    gap: 8px !important;
+    align-items: stretch !important;
+  }
+
+  .fc .fc-toolbar-title {
+    font-size: 15px !important;
+    text-align: center;
+  }
+
+  .fc .fc-toolbar-chunk {
+    display: flex;
+    justify-content: center;
+  }
+
+  .fc .fc-button {
+    padding: 6px 10px !important;
+    font-size: 11px !important;
+  }
+
+  .fc .fc-daygrid-day-number {
+    font-size: 11px !important;
+    padding: 4px !important;
+  }
+
+  .fc .fc-event {
+    font-size: 10px !important;
+    padding: 1px 3px !important;
+  }
+
+  .fc .fc-col-header-cell-cushion {
+    font-size: 10px !important;
+  }
+}
+
+/* =============================================
+   TOUCH DEVICE — UNIVERSAL IMPROVEMENTS
+   ============================================= */
+
+@media (pointer: coarse) {
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+
+  /* Larger tap targets */
+  button,
+  select,
+  input,
+  a {
+    min-height: 40px;
+  }
+
+  select {
+    min-width: 44px;
+  }
+
+  /* Better touch scrolling feel */
+  * {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Remove hover states that get stuck on touch */
+  button:hover {
+    opacity: 1;
+  }
+}
+
+/* =============================================
+   GLASS / CARD UTILITIES
+   ============================================= */
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+}
+
+/* =============================================
+   KANBAN COLUMN — HIDE SCROLLBAR ON MOBILE
+   ============================================= */
+
+.column-scroll {
+  overflow-y: auto;
+}
+
+@media (max-width: 640px) {
+  .column-scroll::-webkit-scrollbar {
+    display: none;
+  }
+
+  .column-scroll {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+/* =============================================
+   INPUT FOCUS RING — ACCESSIBILITY
+   ============================================= */
+
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* =============================================
+   RESPONSIVE TYPOGRAPHY
+   ============================================= */
+
+@media (max-width: 640px) {
+  html {
+    font-size: 15px;
+  }
+
+  h1 {
+    font-size: clamp(22px, 7vw, 36px) !important;
+  }
+
+  h2 {
+    font-size: clamp(18px, 5vw, 28px) !important;
+  }
+
+  h3 {
+    font-size: clamp(15px, 4vw, 22px) !important;
+  }
+}
