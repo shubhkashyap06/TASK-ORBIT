@@ -138,16 +138,3 @@ TaskOrbit is optimized for deployment on Vercel or Netlify.
 **Shubh Kashyap**  
 Creator of TaskOrbit — a modern productivity and collaboration platform.
 
----
-
-## 📄 License
-
-MIT License
-
----
-
-## ⭐ Future Improvements
-- AI productivity assistant
-- Voice task creation
-- Smart scheduling
-- Predictive workload analytics
